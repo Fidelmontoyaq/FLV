@@ -151,7 +151,7 @@ export default function App() {
                 </div>
 
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-                  COMPAÑEROS EN EL MISMO LOCAL DE VOTACIÓN ({amigos.length})
+                  COMPAÑEROS DE LOCAL DE VOTACIÓN ({amigos.length})
                 </p>
 
                 {amigos.length > 0 ? (
