@@ -41,7 +41,7 @@ export default function App() {
     setError('');
   };
 
-  // Icono de estrella optimizado para acoplarse horizontalmente en celulares
+  // Icono de estrella optimizado
   const IconoEstrella = () => (
     <svg 
       className="w-4 h-4 text-amber-500 fill-current inline-block ml-1.5 align-middle shrink-0" 
@@ -52,17 +52,20 @@ export default function App() {
     </svg>
   );
 
+  // Icono de escudo para contingencia
+  const IconoEscudo = () => (
+    <span className="ml-1.5 align-middle text-sm" title="Personal de Contingencia">🛡️</span>
+  );
+
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col items-center justify-center p-3 font-sans antialiased">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
         
-        {/* Encabezado - Estilo Corporativo Externo */}
         <div className="bg-[#A6192E] px-5 py-5 text-center text-white relative border-b-4 border-[#707372]">
           <h1 className="text-lg font-black tracking-wider uppercase">Consulta de Fiscalizadores</h1>
           <p className="text-slate-200 text-[11px] mt-0.5 font-medium tracking-wide">Actualizado hasta juevez 5:00 am</p>
         </div>
 
-        {/* Buscador */}
         <div className="p-5">
           <form onSubmit={handleBuscar} className="space-y-4">
             <div>
@@ -99,28 +102,24 @@ export default function App() {
             </div>
           </form>
 
-          {/* Mensajes de Error */}
           {error && (
-            <div className="mt-4 p-3 bg-red-50 border-l-4 border-[#A6192E] text-xs text-red-700 font-bold rounded-r-xlNDA">
+            <div className="mt-4 p-3 bg-red-50 border-l-4 border-[#A6192E] text-xs text-red-700 font-bold rounded-r-xl">
               ❌ {error}
             </div>
           )}
 
-          {/* Bloque de Resultados */}
           {usuario && (
             <div className="mt-5 space-y-4">
-              
-              {/* Tarjeta del Usuario Consultado */}
               <div className="bg-[#F4F5F6] border border-[#707372]/30 rounded-xl p-4 shadow-sm">
                 <div className="space-y-2.5">
                   <div>
                     <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-0.5">
                       Fiscalizador Consultado
                     </span>
-                    {/* Contenedor bloque en línea alineado para evitar saltos raros en móvil */}
                     <div className="block text-base font-black text-[#1C1F21] leading-snug">
                       <span className="align-middle">{usuario.apellidosNombres}</span>
                       {usuario.esResponsable && <IconoEstrella />}
+                      {Number(usuario["# CONTRATO SIR"]) === 3000 && <IconoEscudo />}
                     </div>
                     
                     <span className="text-xs text-slate-600 font-medium block mt-1">
@@ -141,7 +140,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Tarjeta de Compañeros asignados al mismo Local */}
               <div className="border border-slate-200 rounded-xl p-4 bg-white shadow-sm">
                 <div className="flex flex-col gap-1 mb-3">
                   <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -153,20 +151,17 @@ export default function App() {
                 </div>
 
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-                  Personal asignado a este local ({amigos.length})
+                  COMPAÑEROS EN EL MISMO LOCAL DE VOTACIÓN
                 </p>
 
                 {amigos.length > 0 ? (
                   <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
                     {amigos.map((amigo, index) => (
-                      <div 
-                        key={index} 
-                        className="p-3 bg-[#F4F5F6] rounded-lg border border-slate-200/60 text-xs"
-                      >
-                        {/* Estructura optimizada para listas densas en celulares */}
+                      <div key={index} className="p-3 bg-[#F4F5F6] rounded-lg border border-slate-200/60 text-xs">
                         <div className="block font-bold text-[#1C1F21] leading-snug mb-0.5">
                           <span className="align-middle">{amigo.apellidosNombres}</span>
                           {amigo.esResponsable && <IconoEstrella />}
+                          {Number(amigo["# CONTRATO SIR"]) === 3000 && <IconoEscudo />}
                         </div>
                         <p className="text-[11px] text-slate-600 font-medium">
                           Cel: {amigo.celular} <span className="text-slate-300 mx-1">•</span> Dist: {amigo.distrito}
@@ -180,11 +175,9 @@ export default function App() {
                   </p>
                 )}
               </div>
-
             </div>
           )}
         </div>
-
       </div>
     </div>
   );
