@@ -63,7 +63,7 @@ export default function App() {
         
         <div className="bg-[#A6192E] px-5 py-5 text-center text-white relative border-b-4 border-[#707372]">
           <h1 className="text-lg font-black tracking-wider uppercase">Consulta de Fiscalizadores</h1>
-          <p className="text-slate-200 text-[11px] mt-0.5 font-medium tracking-wide">Actualizado hasta juevez 5:00 am</p>
+          <p className="text-slate-200 text-[11px] mt-0.5 font-medium tracking-wide">Actualizado hasta el sábado 10:30 am</p>
         </div>
 
         <div className="p-5">
